@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vCard - Personal Portfolio</title>
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
 
   <!--
     - favicon
@@ -25,7 +36,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body data-theme="light">
 
   <!--
     - #MAIN
@@ -55,6 +66,10 @@
           <span>Show Contacts</span>
 
           <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+        <button class="theme-btn" data-theme-btn aria-label="Toggle theme">
+          <ion-icon name="moon-outline"></ion-icon>
         </button>
 
       </div>

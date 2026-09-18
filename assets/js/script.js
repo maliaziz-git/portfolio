@@ -157,3 +157,35 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+
+
+// theme toggle variables & functionality
+const themeBtn = document.querySelector("[data-theme-btn]");
+const themeBtnIcon = themeBtn ? themeBtn.querySelector("ion-icon") : null;
+
+const applyTheme = function (theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  document.body.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+
+  if (themeBtnIcon) {
+    if (theme === "dark") {
+      themeBtnIcon.setAttribute("name", "sunny-outline");
+    } else {
+      themeBtnIcon.setAttribute("name", "moon-outline");
+    }
+  }
+};
+
+// initialize theme based on stored preference (defaults to light)
+const initialTheme = localStorage.getItem("theme") || "light";
+applyTheme(initialTheme);
+
+if (themeBtn) {
+  themeBtn.addEventListener("click", function () {
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(newTheme);
+  });
+}
